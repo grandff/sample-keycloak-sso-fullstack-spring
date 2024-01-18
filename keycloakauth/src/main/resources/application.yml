@@ -1,0 +1,35 @@
+server:
+  port: 8083
+
+spring:
+  profiles:
+    active: dev #local dev profile
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  # sql:
+  #   init:
+  #     mode: always
+  #     encoding: UTF-8
+
+  jpa:
+    hibernate:
+      # h2 로 테스트할때는 테이블이 자동 생성
+      ddl-auto: none # none, validate, update, create, create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show-sql: true
+        format-sql: true
+        use-sql-comments: true
+
+keycloak:
+  server:
+    contextPath: /auth
+    adminUser:
+      username: admin
+      password: admin
+    realmImportFile: sample-realm.json

@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/customdb
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: root
+  # sql:
+  #   init:
+  #     schema-locations: classpath:schema-dev.sql # dev 프로파일용 스키마 파일 경로 설정
