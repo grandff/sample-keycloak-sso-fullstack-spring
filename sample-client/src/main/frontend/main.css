@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom tailwind css below ... */
+.my-header {
+    @apply text-2xl my-4 mx-4
+}

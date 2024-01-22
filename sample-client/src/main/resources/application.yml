@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    active: dev # local, dev
+  security:
+    oauth2:
+      client:
+        registration:
+          custom:
+            client-id: ssoClient-1
+            client-secret: ssoClientSecret-1
+            scope: read,write,openid
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8082/ui-one/login/oauth2/code/custom
+            #redirect-uri: http://localhost:8082/ui-one/test1
+        provider:
+          custom:
+            authorization-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/auth
+            token-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/token
+            user-info-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+  thymeleaf:
+    # enable: true
+    cache: false
+    # check-template-location: false
+    prefix: classpath:/templates/
+    suffix: .html
+  cache:
+    type: NONE
+
+server:
+  port: 8082
+  servlet:
+    context-path: /ui-one
+
+logging:
+  level:
+    org.springframework: INFO
+
+resourceserver:
+  api:
+    url: http://localhost:8081/sso-resource-server

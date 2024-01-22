@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/customdb
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: root
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8083/auth/realms/dev
+          jwk-set-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/certs

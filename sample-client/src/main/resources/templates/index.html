@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Spring OAuth Client Thymeleaf - 1</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/toastify.js}"></script>
+    <!-- this is where we refer the css file from src/main/resources/static/main.css -->
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5"
+    >
+      <a class="navbar-brand" th:href="@{/foos/}"
+        >Spring OAuth Client Thymeleaf - 1</a
+      >
+    </nav>
+
+    <div class="container">
+      <label>Welcome ! </label> <br />
+      <div class="flex flex-wrap flex-row justify-center">
+        <a th:href="@{/user/detail/}" class="btn btn-primary mr-3"
+          >로그인 후 회원정보 조회</a
+        >
+        <!-- 로그인 하기 -->
+        <a th:href="@{/member/register}" class="btn btn-primary mr-3"
+          >회원가입</a
+        >
+        <!-- 로그인 하기 -->
+        <!-- 회원가입 하기 -->
+        <a th:href="@{/foos/}" class="btn btn-primary mr-3">Login Sample</a>
+        <a th:href="@{/user/info/}" class="btn btn-primary mr-3"
+          >User Info(OAuth2 Default..??)</a
+        >
+        <a th:href="@{/login-token/}" class="btn btn-primary mr-3"
+          >Login Token Test</a
+        >
+        <a th:href="@{/login-info/}" class="btn btn-primary mr-3"
+          >Login Info Test</a
+        >
+      </div>
+      <div class="flex flex-wrap justify-center mt-5">
+        <button
+          th:onclick="|location.href='@{/member/logout}'|"
+          type="button"
+          class="text-white bg-gray-800 dark:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+        >
+          로그아웃
+        </button>
+      </div>
+    </div>
+
+    <!-- 회원가입 성공 시 -->
+    <script th:inline="javascript">
+               /*<![CDATA[*/
+               	const registerResult = [[${registerResult}]] ;
+               	console.log(registerResult);
+
+           if (registerResult === "Y") {
+           	Toastify({
+           		text: "회원가입에 성공했습니다! 로그인해주세요 🏄‍♂️",
+           		duration: 5000,
+          newWindow: true,
+          gravity: "bottom", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+       style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+       },
+           	}).showToast();
+           }
+               /*]]>*/
+    </script>
+  </body>
+</html>
