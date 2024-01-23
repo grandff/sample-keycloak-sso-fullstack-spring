@@ -1,0 +1,36 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          custom:
+            client-id: ssoClient-3
+            client-secret: ayjc4k326TKW1Wmm6CZRpdchtxR7zKfl
+            scope: read,write,openid
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8085/ui-three/login/oauth2/code/custom
+        provider:
+          custom:
+            authorization-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/auth
+            token-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/token
+            user-info-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+  thymeleaf:
+    cache: false
+  cache:
+    type: NONE
+
+server:
+  port: 8085
+  servlet:
+    context-path: /ui-three
+
+logging:
+  level:
+    org.springframework: INFO
+
+resourceserver:
+  api:
+    url: http://localhost:8081/sso-resource-server/api/foos/
+#    url: http://localhost:8081/sso-resource-server
