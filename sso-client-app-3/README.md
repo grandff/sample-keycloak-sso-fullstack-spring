@@ -10,7 +10,7 @@ Keycloak Client 생성순서 입니다.
 7. keycloak에 client 추가
 8. test 진행
 
-## 
+
 ## spring maven 생성
 1. 터미널에 명령어를 실행 한다.(프로젝트 생성)
 
@@ -149,7 +149,7 @@ build/
 .vscode/
 ```
 
-- 2. 터미널에 sso-client-app-3 이동 후 
+4. 터미널에 sso-client-app-3 이동 후 
  ```bash
  cd sso-client-app-3
  ```
@@ -181,19 +181,21 @@ build/
 
 
 ## realm file export 후 import 하기
+
 <img width="1688" alt="6" src="https://github.com/grandff/sample-keycloak-sso-spring/assets/29056140/3a63677a-827d-4e84-9c62-27ae3933a0ce">
 
 <img width="1680" alt="7" src="https://github.com/grandff/sample-keycloak-sso-spring/assets/29056140/cc49bbed-2d2a-4b90-9c3b-53217493938a">
 
 
-
 ## realm file export 후 import시 주의사항
+- 클라이언트 생성후 key값 확인후 .josn 비번이 "*****"로 되어 있으면 변경을 해줘야함
+- 만약 DB password이 "*****"로 되어 있으면 realm file이 안올라 오기도함
 
 <img width="1701" alt="key값 확인" src="https://github.com/grandff/sample-keycloak-sso-spring/assets/29056140/3511882d-7fc6-4119-9609-8f1c902574d7">
 
 ![8](https://github.com/grandff/sample-keycloak-sso-spring/assets/29056140/764b8ed8-4c1a-47b5-a580-ad11932afa33)
 
-- 클라이언트 생성후 key값 확인후 .josn 비번이 "*****"로 되어 있으면 변경을 해줘야함
+
 
 
 
@@ -255,7 +257,8 @@ logging:
 
 resourceserver:
   api:
-    url: http://localhost:8081/sso-resource-server/api/foos/     
+    url: http://localhost:8081/sso-resource-server/api/foos/
+#  resourceserver.api.ur은 sso-resource-server의 controller의 url 요청
 ```
 [주의]
 아래는 Client 생성시 입력한 내용을 참고로 내용을 입력해야함 
@@ -420,7 +423,7 @@ public class FooModel {
 
 }
 ```
-##SSOClientApplication .java 소스입력 
+##SSOClientApplication .java 소스입력 (main 변경)
 ```java
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -466,17 +469,16 @@ public class SSOClientApplication
 				<tr>
 					<td>ID</td>
 					<td>Name</td>
-					<!--  <td>Creation Date</td>-->
 				</tr>
 			</thead>
 			<tbody>
-				<!--<tr th:if="${foos.empty}">
+				<tr th:if="${foos.empty}">
 					<td colspan="4">No foos</td>
 				</tr>
 				<tr th:each="foo : ${foos}">
 					<td><span th:text="${foo.id}"> ID </span></td>
 					<td><span th:text="${foo.name}"> Name </span></td>
-				</tr>-->
+				</tr>
 			</tbody>
 		</table>
 	</div>
@@ -515,9 +517,9 @@ public class SSOClientApplication
 
 
 ### test
-- 1. http://localhost:8085/ui-three/ 접속
-- 2. id : louis.second@example.com, pw : changeme 입력  
-- 3. foo의 정보가 나오면 정상
+1. http://localhost:8085/ui-three/ 접속
+2. id : louis.second@example.com, pw : changeme 입력  
+3. foo의 정보가 나오면 정상
 
 
 ## reference
