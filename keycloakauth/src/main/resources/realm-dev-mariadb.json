@@ -1404,6 +1404,8 @@
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
   "smtpServer": {},
+  "accountTheme": "custom",
+  "loginTheme": "custom",
   "eventsEnabled": false,
   "eventsListeners": [
     "jboss-logging"

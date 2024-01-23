@@ -83,7 +83,6 @@
 			<artifactId>reactor-netty</artifactId>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -98,13 +97,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<tasks>
-								<!-- <task>
-									<exec>
-										<directory>src/main/frontend</directory>
-										<command>npm install</command>
-									</exec>
-								</task> -->
+							<tasks>								
 								<task>
 									<exec>
 										<directory>src/main/frontend</directory>
@@ -113,44 +106,7 @@
 								</task>
 							</tasks>
 						</configuration>
-					</execution>
-					<execution>
-						<id>dev</id>
-						<!-- configuration for running in dev mode with ./mvnw paseq:exec@dev -->
-						<configuration>
-							<tasks>
-								<!-- first run npm install -->
-								<!-- <task>
-									<exec>
-										<directory>src/main/frontend</directory>
-										<command>npm install</command>
-									</exec>
-								</task> -->
-								<!-- then start watch task in the background and output the result to `src/main/resources/static/main.css` -->
-								<task>
-									<async>true</async>
-									<exec>
-										<directory>src/main/frontend</directory>
-										<command>npm run watch -- -o ../resources/static/main.css</command>
-									</exec>
-								</task>
-								<!--
-								optionally post-processed CSS file can also be generated in `target` directory.
-								Changes to main.css will trigger live reload without a need to recompile the project in Intellij IDEA
-								-->
-								<task>
-									<async>true</async>
-									<exec>
-										<directory>src/main/frontend</directory>
-										<command>npm run watch -- -o ${project.build.directory}/classes/static/main.css</command>
-									</exec>
-								</task>
-								<task>
-									<goals>spring-boot:run</goals>
-								</task>
-							</tasks>
-						</configuration>
-					</execution>
+					</execution>					
 				</executions>
 			</plugin>
 

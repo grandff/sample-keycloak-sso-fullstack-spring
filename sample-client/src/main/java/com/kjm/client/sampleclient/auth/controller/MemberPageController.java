@@ -128,7 +128,7 @@ public class MemberPageController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) throws ServletException {
         request.logout();
-        return "redirect:http://localhost:8083/auth/realms/dev/protocol/openid-connect/logout?post_logout_redirect_uri=http://localhost:8082/ui-one/login/oauth2/code/custom&client_id=ssoClient-1";
+        return "redirect:http://localhost:8083/auth/realms/dev/protocol/openid-connect/logout?redirect_uri=http://localhost:8082/ui-one";
     }
 
 }

@@ -179,8 +179,8 @@
     },
     "theme": {
         "staticMaxAge": "${keycloak.theme.staticMaxAge:}",
-        "cacheTemplates": "${keycloak.theme.cacheTemplates:}",
-        "cacheThemes": "${keycloak.theme.cacheThemes:}",
+        "cacheTemplates": "false",
+        "cacheThemes": "false",
         "folder": {
             "dir": "${keycloak.theme.dir}"
         }
@@ -256,7 +256,7 @@
     },
     "login-protocol": {
         "openid-connect": {
-            "legacy-logout-redirect-uri": "${keycloak.oidc.legacyLogoutRedirectUri:false}"
+            "legacy-logout-redirect-uri": "true"            
         },
         "saml": {
             "knownProtocols": [

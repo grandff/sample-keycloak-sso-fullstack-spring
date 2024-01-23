@@ -31,12 +31,12 @@ Spring Boot 3, OpenJDK17, Keycloak, H2, JPA
 - [ ] 로그인하고 볼 수 있는 마이페이지 내에서 회원 탈퇴 기능, 회원정보 찾기 기능 구현
 - [ ] 로그인 커스텀 테마 설정
 - [X] 마리아디비 연결 및 기능 테스트
-- [ ] thymeleaf 기본 설정 및 tailwindcss 설정
+- [X] thymeleaf 기본 설정 및 tailwindcss 설정
 - [ ] 로그인 유지 방법 변경 (토큰 유효기간 늘리기, 자동 재발급 등)
 - [ ] 게시판 CRUD 기능 구현
 - [ ] 신규 Client에서 적용 방법 정리 및 테스트
 - [X] Realm 설정 export 방법
-- [ ] [authorization_request_not_found] 가 나올 경우 자동 리다이렉트 하기
+- [ ] [authorization_request_not_found] 가 나올 경우 자동 리다이렉트 하기. keycloak에서 나오는 오류에 대해 리다이렉트 또는 커스텀한 처리가 필요함
 - [ ] Resource Server 하나 더 만들어서 연계하기
 - [ ] 로그 프레임워크로 자세히 나오게 (MDC) -> Client, Resource 두 곳에 설정
 - [ ] 필터, 인터셉터 등 기본 설정 -> Client, Resource 두 곳에 설정
@@ -110,3 +110,4 @@ CREATE DATABASE IF NOT EXISTS customdb2;
 (keycloak endpoint)<https://www.baeldung.com/postman-keycloak-endpoints> </br>
 (sso keycloak spring)<https://www.baeldung.com/sso-spring-security-oauth2> </br>
 (oauth2에 대한 기본 설명)<https://adjh54.tistory.com/221> </br>
+(spring boot 버전에 따른 자바 버전) <https://medium.com/sjk5766/spring-boot-%EB%B2%84%EC%A0%84%EC%97%90-%EB%94%B0%EB%A5%B8-java-%EB%B2%84%EC%A0%84-ff15c5ba7ecb> </br>
