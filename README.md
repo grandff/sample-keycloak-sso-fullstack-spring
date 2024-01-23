@@ -6,13 +6,12 @@ keycloak을 embedded 한 spring auth server이다. sso 테스트와 동시에 cu
 
 ## Project list
 
-- authorization-server
+- keycloakauth
   - [X] maria db 연결
-- client-app1
-  - login test client
-- client-app2
+- sample-client
+  - example client
+- sso-client-app3
   - basic cleint
-- client-app3 (아예 새로 만들어서 테스트용)
 - resource-server
 - resource-server2
   - 추가 기능 연계용
@@ -29,7 +28,7 @@ Spring Boot 3, OpenJDK17, Keycloak, H2, JPA
 - [X] 로그인 완료 후 응답값 새로 설정 (로그인 시도 - 로그인화면 - 로그인성공 - 토큰 확인 - 토큰 정보로 userinfo 요청)
 - [X] 회원가입 기능 구현 (local은 불가)
 - [ ] 로그인하고 볼 수 있는 마이페이지 내에서 회원 탈퇴 기능, 회원정보 찾기 기능 구현
-- [ ] 로그인 커스텀 테마 설정
+- [X] 로그인 커스텀 테마 설정
 - [X] 마리아디비 연결 및 기능 테스트
 - [X] thymeleaf 기본 설정 및 tailwindcss 설정
 - [ ] 로그인 유지 방법 변경 (토큰 유효기간 늘리기, 자동 재발급 등)
@@ -42,6 +41,7 @@ Spring Boot 3, OpenJDK17, Keycloak, H2, JPA
 - [ ] 필터, 인터셉터 등 기본 설정 -> Client, Resource 두 곳에 설정
 - [ ] 문서 최종 정리
 - [ ] jboss, nginx 설정
+- [ ] 오류페이지 설정, 오류 처리 (auth server)
 
 ## Functions
 

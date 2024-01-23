@@ -48,6 +48,12 @@ public class MemberPageController {
         return "pages/member/register";
     }
 
+    // 정보찾기 화면으로 이동
+    @GetMapping("/find")
+    public String goToFint() {
+        return "pages/member/find";
+    }
+
     // 회원가입 입력값 검증
     @PostMapping("/register/validate")
     public String validateMemberRegister(@Valid MemberRegsiterRequestDto memberRegsiterRequestDto,

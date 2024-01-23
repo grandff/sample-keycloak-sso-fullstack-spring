@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <!-- script -->
-    <script type="text/javascript" th:src="@{/js/htmx.js}"></script>
-    <script type="text/javascript" th:src="@{/js/common.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/main.css}" />
-  </head>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+  layout:fragment="Content"
+>
   <body>
     <!-- <div th:replace="layouts/layout :: content"> -->
     <section class="text-gray-600 body-font relative">

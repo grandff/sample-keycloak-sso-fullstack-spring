@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @EnableWebSecurity
@@ -32,7 +31,7 @@ public class SecurityConfig {
                                 .authorizeRequests()
                                 .antMatchers("/", "/login**", "/test1", "/member/register", "/css/**",
                                                 "/templates/**/**", "/js/**", "/templates/fragments/**",
-                                                "/member/register/**", "/member/logout/**",
+                                                "/member/register/**", "/member/logout/**", "/member/find/**",
                                                 "/templates/layouts/**",
                                                 "**/*.css", "/ui-one/css/output.css")
                                 .permitAll()

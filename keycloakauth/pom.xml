@@ -18,9 +18,7 @@
 		<!-- non-dependencies -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>17</java.version>
-
         <keycloak.version>23.0.1</keycloak.version>
-
         <!-- these should be updated together with Keycloak -->
         <!-- check keycloak-dependencies-server-all effective pom -->
         <infinispan.version>14.0.6.Final</infinispan.version>
@@ -90,6 +88,13 @@
 			<version>${keycloak.version}</version>
 			<type>pom</type>
 		</dependency>
+
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-themes</artifactId>
+            <version>${keycloak.version}</version>
+        </dependency>
+
 		
 		<dependency>
 			<groupId>org.keycloak</groupId>
@@ -145,7 +150,7 @@
 
 	</dependencies>
 
-	<build>
+	<build>		
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -159,7 +164,7 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
-					</excludes>
+					</excludes>                    
 				</configuration>
 			</plugin>
 		</plugins>

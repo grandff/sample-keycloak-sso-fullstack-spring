@@ -43,3 +43,11 @@ application 이 아닌 Dbutils 파일을 참조해야한다. 서비스에 맞게
 ### 1. roles
 
 Invalid scopes: read write openid 가 나오는 경우, client scope에 각각의 roles를 추가해준다.
+
+## Login Theme 설정 방법 (demo 참고)
+
+### 1. keycloak-themes.json에 추가
+
+### 2. resources/theme 에 추가
+
+### 3. properties 파일 추가

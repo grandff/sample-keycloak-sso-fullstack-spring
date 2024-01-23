@@ -20,6 +20,7 @@ public class KeycloakauthApplication {
 	private static final Logger LOG = LoggerFactory.getLogger(KeycloakauthApplication.class);
 
 	public static void main(String[] args) {
+		System.setProperty("keycloak.theme.dir", "src/main/resources/themes");
 		SpringApplication.run(KeycloakauthApplication.class, args);
 	}
 
