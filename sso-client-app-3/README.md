@@ -176,6 +176,9 @@ build/
 <img width="1702" alt="5" src="https://github.com/grandff/sample-keycloak-sso-spring/assets/29056140/5dcc1607-0abf-42e3-b6ba-fdd86c4d400f">
 
 
+## client에 read write 권한 넣어주기 
+<img width="1691" alt="스크린샷 2024-01-23 오전 11 30 30" src="https://github.com/grandff/sample-keycloak-sso-fullstack-spring/assets/29056140/509bcd38-081f-4650-b883-c6ac08d249db">
+
 
 ## realm file export 후 import 하기
 <img width="1688" alt="6" src="https://github.com/grandff/sample-keycloak-sso-spring/assets/29056140/3a63677a-827d-4e84-9c62-27ae3933a0ce">
