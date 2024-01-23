@@ -177,6 +177,8 @@ build/
 
 
 ## client에 read write 권한 넣어주기 
+<img width="1693" alt="스크린샷 2024-01-23 오후 12 19 29" src="https://github.com/grandff/sample-keycloak-sso-fullstack-spring/assets/29056140/86f05575-e62a-4a8f-99e8-26d9587e8fe5">
+
 <img width="1691" alt="스크린샷 2024-01-23 오전 11 30 30" src="https://github.com/grandff/sample-keycloak-sso-fullstack-spring/assets/29056140/509bcd38-081f-4650-b883-c6ac08d249db">
 
 
