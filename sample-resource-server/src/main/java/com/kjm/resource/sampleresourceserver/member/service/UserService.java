@@ -18,4 +18,8 @@ public interface UserService {
 
     // 회원 등록 (상세)
     UserDetailVo addUserDetail(MemberRequestDto dto);
+
+    //업데이트
+    UserDetailVo updateProfile(MemberRequestDto dto);
+
 }

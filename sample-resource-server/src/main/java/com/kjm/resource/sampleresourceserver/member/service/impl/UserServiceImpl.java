@@ -60,4 +60,16 @@ public class UserServiceImpl implements UserService {
         return userDetailRepository.save(vo);
     }
 
+    // 프로필 등록
+    @Override
+    public UserDetailVo updateProfile(MemberRequestDto dto) {
+        System.out.println("UserDetailVo updateProfile come : "+ dto.toString());
+        UserDetailVo vo = UserDetailVo.builder()
+                .username(dto.getUsername())
+                .addr(dto.getAddr())
+                .bio(dto.getBio())
+                .build();
+        return userDetailRepository.save(vo);
+    }
+
 }

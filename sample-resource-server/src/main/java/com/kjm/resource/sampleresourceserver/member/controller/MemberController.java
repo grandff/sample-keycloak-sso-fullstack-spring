@@ -16,6 +16,8 @@ import com.kjm.resource.sampleresourceserver.member.service.UserService;
 // import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -52,6 +54,27 @@ public class MemberController {
                     .data(false)
                     .resultCode(ResultCodeEnum.SERVICE_UNAVAILABLE)
                     .resultMsg("회원 등록에 실패했습니다. 잠시 후에 다시 시도해주세요.")
+                    .build();
+            return new ResponseEntity<>(responseResult, HttpStatus.SERVICE_UNAVAILABLE);
+        }
+
+    }
+
+    //프로필 등록
+    @PostMapping(value = "/profile/v1.0", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponse<?>> saveProfile(@RequestBody MemberRequestDto requestDto) {
+        log.info("param is ... {}", requestDto.toString());
+        // 프로필 수정
+        UserDetailVo userVo = userSerivce.addUserDetail(requestDto);
+        
+        if (userVo != null)
+            return new ResponseEntity<>(BaseResponse.actionCreateSuccess(), HttpStatus.CREATED);
+        else {
+            BaseResponse<Boolean> responseResult = BaseResponse.<Boolean>builder()
+                    .status(StatusEnum.FAIL)
+                    .data(false)
+                    .resultCode(ResultCodeEnum.SERVICE_UNAVAILABLE)
+                    .resultMsg("프로필 등록에 실패했습니다. 잠시 후에 다시 시도해주세요.")
                     .build();
             return new ResponseEntity<>(responseResult, HttpStatus.SERVICE_UNAVAILABLE);
         }

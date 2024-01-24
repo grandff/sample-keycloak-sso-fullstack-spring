@@ -96,8 +96,7 @@ public class MemberPageController {
 
     // 회원가입
     @PostMapping("/register")
-    public String registerMember(@Valid MemberRegsiterRequestDto memberRegsiterRequestDto, BindingResult result,
-            HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+    public String registerMember(@Valid MemberRegsiterRequestDto memberRegsiterRequestDto, BindingResult result, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         // 회원가입 유효성 error시 회원가입화면으로 return
         if (result.hasErrors()) {
             return "pages/member/register";
@@ -108,7 +107,7 @@ public class MemberPageController {
 
         // WebClient를 사용하여 POST 요청 보내기
         String url = fooApiUrl + "/member/v1.0";
-
+        
         Map<String, Object> resultMap = webClient.post()
                 .uri(url)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -130,11 +129,69 @@ public class MemberPageController {
         return "redirect:/";
     }
 
+
     // 로그아웃
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) throws ServletException {
         request.logout();
         return "redirect:http://localhost:8083/auth/realms/dev/protocol/openid-connect/logout?redirect_uri=http://localhost:8082/ui-one";
     }
+
+    ///프로필 화면 이동
+    @GetMapping("/profile/view")
+    public String viewUserProfile(Model model) {
+        Map<String, Object> memberInfo = this.webClient.get()
+                .uri(fooApiUrl + "/user/detail")
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
+                })
+        .block();
+        model.addAttribute("memberInfo", memberInfo);
+        return "pages/member/profile/view";
+    }
+
+    ///프로필 화면 이동
+    @GetMapping("/profile/update")
+    public String updateUserProfile(Model model) {
+        Map<String, Object> memberInfo = this.webClient.get()
+                .uri(fooApiUrl + "/user/detail")
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
+                })
+        .block();
+        
+        //정보매핑하기 
+        Map<String, String> data = (Map<String, String>) memberInfo.get("data");
+        MemberRegsiterRequestDto profileUpdateRequestDto = new MemberRegsiterRequestDto();
+        profileUpdateRequestDto.setUsername(data.get("username"));
+        profileUpdateRequestDto.setName(data.get("name"));
+        profileUpdateRequestDto.setPhoneNo(data.get("phoneNo"));
+        profileUpdateRequestDto.setCity(data.get("city"));
+        profileUpdateRequestDto.setAddr(data.get("addr"));
+        profileUpdateRequestDto.setBio(data.get("bio"));
+        
+        model.addAttribute("profileUpdateRequestDto", profileUpdateRequestDto);
+       
+        return "pages/member/profile/update";
+    }
+
+    ///프로필 저장
+    @PostMapping("/profile/save")
+    public String saveUserProfile(@Valid MemberRegsiterRequestDto profileUpdateRequestDto, BindingResult result,  HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+        // WebClient를 사용하여 POST 요청 보내기
+        String url = fooApiUrl + "/member/profile/v1.0";      
+        Map<String, Object> resultMap = webClient.post()
+            .uri(url)
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(profileUpdateRequestDto)
+            .retrieve()
+            .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
+            })
+        .block();
+        System.out.println("resultMap : "+ resultMap.toString());
+        return "redirect:/member/profile/view";
+
+    }
+
 
 }

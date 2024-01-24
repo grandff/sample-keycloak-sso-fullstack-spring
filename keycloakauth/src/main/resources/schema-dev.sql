@@ -32,6 +32,6 @@ INSERT INTO foo(id, name) VALUES (2, 'Foo 2');
 INSERT INTO foo(id, name) VALUES (3, 'Foo 3');
 
 DELETE FROM users_details;
-INSERT INTO users_details(username,name,phone_no, addr, city, bio) VALUES('user1','바이든','010-1111-2222', '마당 넓은 집', '미국', '오우 미쿡 세계 최강 남바완');
-INSERT INTO users_details(username,name,phone_no, addr, city, bio) VALUES('user2','윤석열','010-3333-4444', '용산 청와대', '대한민국', '오우 두유 노우 헬조선?');
+INSERT INTO users_details(username,name,phone_no, addr, city, bio) VALUES('user1','바이든','010-1111-2222', 'The White House Washington D.C. 20500,', '미국', '오우 미쿡 세계 최강 남바완');
+INSERT INTO users_details(username,name,phone_no, addr, city, bio) VALUES('user2','윤석열','010-3333-4444', '서울특별시 종로구 청와대로 1', '대한민국', '오우 두유 노우 헬조선?');
 INSERT INTO users_details(username,name,phone_no, addr, city, bio) VALUES('user3','시진핑','010-5555-6666', '공산당 남바원', '중국', '니취팔로마');
