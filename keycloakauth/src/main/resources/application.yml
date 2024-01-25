@@ -33,3 +33,7 @@ keycloak:
       username: admin
       password: admin
     realmImportFile: sample-realm.json
+
+# Thymeleaf 설정
+spring.thymeleaf.prefix: classpath:/templates/
+spring.thymeleaf.suffix: .html
