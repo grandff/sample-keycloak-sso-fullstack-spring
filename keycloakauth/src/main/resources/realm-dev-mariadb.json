@@ -773,7 +773,8 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "KkGxR78OdKBdWgAmeecgfI7UaUgZ6buX",
       "redirectUris": [
-        "http://localhost:8082/ui-one/login/oauth2/code/custom"
+        "http://localhost:8082/ui-one/login/oauth2/code/custom",
+        "http://localhost:8082/ui-one"
       ],
       "webOrigins": [
         "+"
@@ -1461,6 +1462,7 @@
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
   "smtpServer": {},
+  "loginTheme": "demo",
   "eventsEnabled": false,
   "eventsListeners": [
     "jboss-logging"

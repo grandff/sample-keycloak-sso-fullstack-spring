@@ -10,10 +10,15 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
 
-  # sql:
-  #   init:
-  #     mode: always
-  #     encoding: UTF-8
+  # Thymeleaf 설정
+  thymeleaf:
+    # enable: true
+    cache: false
+    # check-template-location: false
+    prefix: classpath:/templates/
+    suffix: .html
+  cache:
+    type: NONE
 
   jpa:
     hibernate:
@@ -33,7 +38,3 @@ keycloak:
       username: admin
       password: admin
     realmImportFile: sample-realm.json
-
-# Thymeleaf 설정
-spring.thymeleaf.prefix: classpath:/templates/
-spring.thymeleaf.suffix: .html
