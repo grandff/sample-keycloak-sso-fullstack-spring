@@ -63,7 +63,14 @@
               >
             </div>
             <div th:unless="${#authentication.name} != 'anonymousUser'">
-              <span>로그인해주세요</span>
+              <a
+                th:onclick="|location.href='@{/member/login}'|"
+                type="button"
+                href="#"
+                class="text-white bg-blue-800 dark:bg-red-800 font-small rounded-lg text-sm px-4 py-1.5"
+              >
+                로그인
+              </a>
             </div>
           </li>
           <li th:if="${#authentication.name} != 'anonymousUser'">
