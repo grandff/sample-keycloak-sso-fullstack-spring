@@ -56,74 +56,35 @@ public class MemberController {
         return "redirect:/member/register/confirm";
     }
 
-    /* 
+
     // 회원가입
     @PostMapping("/register")
     public String registerMember(@Valid MemberRegsiterRequestDto memberRegsiterRequestDto, BindingResult result,
             HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         // 회원가입 유효성 error시 회원가입화면으로 return
+        System.out.println("coem : registerMember");
+
         if (result.hasErrors()) {
             return "pages/member/register";
         }
 
         // 없는 데이터 생성
         memberRegsiterRequestDto.setBirthDate("2024-01-01");
+        
+        // 회원 등록
+        UserVo userVo = userSerivce.adduserInfo(memberRegsiterRequestDto);
+        UserDetailVo detailVo = userSerivce.addUserDetail(memberRegsiterRequestDto);
+        System.out.println("UserVo : "+ userVo.toString());
+        System.out.println("detailVo : "+ detailVo);
 
-        // WebClient를 사용하여 POST 요청 보내기
-        String url = resoureUrl + "/member/v1.0";
-
-        WebClient webClient = WebClient.builder()
-                .baseUrl(resoureUrl)
-                .build();
-
-        Map<String, Object> resultMap = webClient.post()
-                .uri(url)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(memberRegsiterRequestDto)
-                .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
-                })
-                .block();
-        // 응답 처리
-        log.info("result ... {}", resultMap.toString());
-
-        String status = String.valueOf(resultMap.get("status")).replaceAll("null", "");
-
-        if (status.equals("SUCCESS")) {
-            redirectAttributes.addFlashAttribute("registerResult", "Y");
-        } else {
+        if (userVo != null && detailVo != null){
+            redirectAttributes.addFlashAttribute("registerResult", "Y"); 
+        }
+        else {
             redirectAttributes.addFlashAttribute("registerResult", "N");
-        }
+        }        
 
-        return "redirect:/";
-    }*/
-
-        // 회원가입
-        @PostMapping("/register")
-        public String registerMember(@Valid MemberRegsiterRequestDto memberRegsiterRequestDto, BindingResult result,
-                HttpSession session, Model model, RedirectAttributes redirectAttributes) {
-            // 회원가입 유효성 error시 회원가입화면으로 return
-            System.out.println("coem : registerMember");
-
-            if (result.hasErrors()) {
-                return "pages/member/register";
-            }
-    
-            // 없는 데이터 생성
-            memberRegsiterRequestDto.setBirthDate("2024-01-01");
-            
-            // 회원 등록
-            UserVo userVo = userSerivce.adduserInfo(memberRegsiterRequestDto);
-            UserDetailVo detailVo = userSerivce.addUserDetail(memberRegsiterRequestDto);
-            System.out.println("UserVo : "+ userVo.toString());
-            System.out.println("detailVo : "+ detailVo);
-
-            if (userVo != null && detailVo != null){
-                redirectAttributes.addFlashAttribute("registerResult", "Y"); 
-            }
-            else {
-                redirectAttributes.addFlashAttribute("registerResult", "N");
-            }        
-            return "redirect:/";
-        }
+        //로그인 후 어느화면으로 이동할건지 확인필요(24.01.29 임미연)
+        return "redirect:http://localhost:8083/auth/";
+    }
 }
