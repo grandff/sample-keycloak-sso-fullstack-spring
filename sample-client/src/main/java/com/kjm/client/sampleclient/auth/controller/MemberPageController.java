@@ -1,5 +1,6 @@
 package com.kjm.client.sampleclient.auth.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
@@ -15,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,12 +51,39 @@ public class MemberPageController {
     @GetMapping("/login")
     public String goToLogin(HttpServletRequest request, HttpServletResponse response, Model model)
             throws UnsupportedEncodingException {
+
+        // 로그인만하고 다시 메인으로 가고 싶어도 resource 서버를 호출해야함
+        // client에서 바로 auth하고 주고받아도 토큰은 받을지 몰라도 세션이 업데이트가 안됨
+        // 따라서 무조건 리소스를 통해서 로그인을 하게 해야함.. 아마도
+        this.webClient.get()
+                .uri(fooApiUrl + "/user/detail")
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
+                })
+                .block();
+        return "redirect:/";
+
+        // try {// redirect URL 알아보기
+        // response.sendRedirect(
+        // "http://localhost:8083/auth/realms/dev/protocol/openid-connect/auth?response_type=code&client_id=ssoClient-1&redirect_uri=http://localhost:8082/ui-one/member/auth&scope=openid&nonce=asb3");
+        // // 여기도
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // System.out.println("login오류창으로 이동");
+        // }
+
+        // return;
+    }
+
+    @GetMapping("/auth")
+    public String loginAuth(HttpServletRequest request) throws UnsupportedEncodingException {
         String code = request.getParameter("code");
         String query = "code=" + URLEncoder.encode(code, "UTF-8");
         query += "&client_id=" + "ssoClient-1";
         query += "&client_secret=" + "KkGxR78OdKBdWgAmeecgfI7UaUgZ6buX";
-        query += "&redirect_uri=" + "http://localhost:8082/ui-one"; // 너님들이 설정해야할 redirect_uri
-        query += "&grant_type=authorization_code";
+        query += "&redirect_uri=" + "http://localhost:8082/ui-one/member/auth"; // 너님들이 설정해야할 redirect_uri. /login에서 호출한
+                                                                                // 동일한 redirect_uri로 설정해야함. 안그러면 오류 발생.
+        query += "&grant_type=client_credentials";
 
         webClient.post()
                 .uri("http://localhost:8083/auth/realms/dev/protocol/openid-connect/token")
@@ -64,6 +94,26 @@ public class MemberPageController {
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
                 })
                 .block();
+
+        // 토큰을 가지고 다시 user-info를 호출해서 로그인 정보 설정
+        // 아래 security를 설정해주지 않으면 메인화면에서 로그인된거처럼 보이질 않음
+        // 자꾸 403이 떠서.. resoruce 서버에 있는걸 호출함 그냥
+        Map<String, Object> userInfo = this.webClient.get()
+                .uri(fooApiUrl + "/user/detail")
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
+                })
+                .block();
+
+        // Assuming the response contains the username
+        log.info("test ... {}", userInfo.toString());
+        String username = userInfo.get("data").toString();
+
+        // Create a new authentication token
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null, null);
+
+        // Set the new authentication token to Security Context
+        SecurityContextHolder.getContext().setAuthentication(auth);
 
         return "redirect:/";
     }

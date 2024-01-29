@@ -24,7 +24,10 @@ public class MemberPageController {
 
     // 회원가입 화면으로 이동
     @GetMapping("/register")
-    public String goToRegister(MemberRegsiterRequestDto memberRegsiterRequestDto, HttpSession session) {
+    public String goToRegister(MemberRegsiterRequestDto memberRegsiterRequestDto, HttpSession session,
+            HttpServletRequest request) {
+        String clientId = String.valueOf(request.getParameter("clientId"));
+        log.info("clientId: {}", clientId);
         session.removeAttribute("member");
         return "pages/member/register";
     }

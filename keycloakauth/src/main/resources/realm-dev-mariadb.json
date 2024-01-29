@@ -455,6 +455,24 @@
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
   "webAuthnPolicyPasswordlessExtraOrigins": [],
+  "users": [
+    {
+      "id": "2930dbe7-7f5d-43ae-92b7-016002add93e",
+      "createdTimestamp": 1706512498272,
+      "username": "service-account-ssoclient-1",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "ssoClient-1",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-dev"
+      ],
+      "notBefore": 0,
+      "groups": []
+    }
+  ],
   "scopeMappings": [
     {
       "clientScope": "offline_access",
@@ -774,7 +792,8 @@
       "secret": "KkGxR78OdKBdWgAmeecgfI7UaUgZ6buX",
       "redirectUris": [
         "http://localhost:8082/ui-one/login/oauth2/code/custom",
-        "http://localhost:8082/ui-one"
+        "http://localhost:8082/ui-one",
+        "http://localhost:8082/ui-one/member/auth"
       ],
       "webOrigins": [
         "+"
@@ -785,7 +804,7 @@
       "standardFlowEnabled": true,
       "implicitFlowEnabled": true,
       "directAccessGrantsEnabled": true,
-      "serviceAccountsEnabled": false,
+      "serviceAccountsEnabled": true,
       "publicClient": false,
       "frontchannelLogout": true,
       "protocol": "openid-connect",
@@ -795,11 +814,59 @@
         "backchannel.logout.session.required": "true",
         "post.logout.redirect.uris": "+",
         "oauth2.device.authorization.grant.enabled": "false",
+        "display.on.consent.screen": "false",
         "backchannel.logout.revoke.offline.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
       "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "c4701795-3b95-4af9-bbcd-115e07c9f633",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "96e2c39e-7a00-4740-bb59-40f79ab5c828",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "6daffdcc-ad76-4062-9c5d-6cf0778d09f4",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "client_id",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "client_id",
+            "jsonType.label": "String"
+          }
+        }
+      ],
       "defaultClientScopes": [
         "web-origins",
         "acr",
@@ -830,7 +897,8 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "ayjc4k326TKW1Wmm6CZRpdchtxR7zKfl",
       "redirectUris": [
-        "http://localhost:8085/ui-three/login/oauth2/code/custom"
+        "http://localhost:8085/ui-three/login/oauth2/code/custom",
+        "http://localhost:8085/ui-three"
       ],
       "webOrigins": [
         "+"
@@ -1505,14 +1573,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "oidc-usermodel-property-mapper",
             "oidc-address-mapper",
-            "saml-user-attribute-mapper",
-            "oidc-full-name-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-usermodel-attribute-mapper",
             "saml-role-list-mapper",
-            "saml-user-property-mapper",
-            "oidc-usermodel-attribute-mapper"
+            "saml-user-attribute-mapper",
+            "oidc-usermodel-property-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-full-name-mapper",
+            "saml-user-property-mapper"
           ]
         }
       },
@@ -1568,14 +1636,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "oidc-address-mapper",
-            "saml-role-list-mapper",
             "oidc-full-name-mapper",
             "oidc-usermodel-attribute-mapper",
+            "saml-role-list-mapper",
             "oidc-sha256-pairwise-sub-mapper",
+            "oidc-address-mapper",
             "oidc-usermodel-property-mapper",
-            "saml-user-attribute-mapper",
-            "saml-user-property-mapper"
+            "saml-user-property-mapper",
+            "saml-user-attribute-mapper"
           ]
         }
       }

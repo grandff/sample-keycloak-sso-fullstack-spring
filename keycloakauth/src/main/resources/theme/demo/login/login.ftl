@@ -4,9 +4,7 @@
     <#if section = "title">
         ${msg("loginTitle",(realm.displayName!''))}
     <#-- 헤더 -->
-    <#elseif section = "header">
-        <#--  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"/>  -->
-        <#--  <link href="${url.resourcesPath}/img/favicon.png" rel="icon"/>  -->
+    <#elseif section = "header">        
         <script>
             function togglePassword() {
                 var x = document.getElementById("password");
@@ -18,6 +16,12 @@
                     x.type = "password";
                     v.src = "${url.resourcesPath}/img/eye-off.png";
                 }
+            }
+
+            function goToRegister() {
+                var url = new URL(window.location.href);
+                var clientId = url.searchParams.get("client_id");                
+                location.href = "http://localhost:8083/member/register?clientId=" + clientId;
             }
         </script>
     <#-- form -->
@@ -82,7 +86,7 @@
                 </div>
                 <div class="mt-4 text-center text-sm" style="margin-top:2rem;">
                 회원이 아니신가요?
-                <a class="underline" href="http://localhost:8082/ui-one/member/register" style="
+                <a class="underline" onclick="goToRegister();" href="#" style="
                     font-size: 1.25rem;
                     color: blue;
                     font-weight: bold;
