@@ -51,3 +51,26 @@ Invalid scopes: read write openid 가 나오는 경우, client scope에 각각�
 ### 2. resources/theme 에 추가
 
 ### 3. properties 파일 추가
+
+## realm setting > Session > SSO Session Idle
+- Session > SSO Session Idle : refresh token 시간을 지정
+
+realm setting >sessions > SSO Session Settings
+- SSO Session Idle :  사용자가 어떤 활동을 하지 않고 로그인된 상태로 유지된Refresh Token 유효 기간 
+- SSO Session Max : 사용자가 로그인된 상태로 유지될 수 있는 최대 시간입니다. 이 시간이 경과하면 사용자는 다시 로그인 
+
+ex) 
+- SSO Session Idle: 5 hours**
+- SSO Session Max: 7 hours**
+
+[상황1]
+- 사용자가 활동을 하지 않고 5시간 동안 로그인된 상태로 있으면 세션은 "idle" 상태로 표시됩니다.
+- 사용자가 6시간째에 활동을 하지 않으면 세션은 만료되어 다시 로그인이 필요합니다.
+
+[상황2]
+- 사용자가 활동을 지속적으로 유지하면 세션은 만료되지 않고 계속 유지됩니다.
+- 최대 7시간까지만 로그인 상태를 유지할 수 있습니다. 사용자는 7시간 이후에는 다시 로그인해야 합니다.
+
+## realm setting >token > Access tokens
+- Token > Access Token Lifespan  : access token 설정
+- Access Token Lifespan : access token 유지 시간 설정
