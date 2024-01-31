@@ -85,11 +85,10 @@
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
+			<!-- <plugin>
 				<groupId>com.maciejwalkowiak.paseq</groupId>
 				<artifactId>paseq-maven-plugin</artifactId>
-				<version>0.1.1</version>
-				<!-- configuration for building the package -->
+				<version>0.1.1</version>				
 				<executions>
 					<execution>
 						<phase>compile</phase>
@@ -108,7 +107,7 @@
 						</configuration>
 					</execution>					
 				</executions>
-			</plugin>
+			</plugin> -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

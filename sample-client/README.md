@@ -34,6 +34,7 @@ npx tailwindcss-cli --output src/main/resources/static/css/output.css
 ## References
 
 (tailwindcss 설치)<https://maciejwalkowiak.com/blog/spring-boot-thymeleaf-tailwindcss/> </br>
+(tailwindcss 설치 - 이걸로 사용 중)<https://velog.io/@sechan100/tailwind-%EC%BB%B4%ED%8C%8C%EC%9D%BC-%ED%95%98%EA%B8%B0> </br>
 (thymeleaf 설정)<https://adjh54.tistory.com/75> </br>
 (ubuntu nodejs 설치)<https://velog.io/@hsg5533/Ubuntu-Node.js-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0> </br>
 (post 403 error fix) <https://www.baeldung.com/java-spring-fix-403-error> </br>
