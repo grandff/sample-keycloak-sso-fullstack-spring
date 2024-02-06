@@ -11,14 +11,27 @@ keycloak을 embedded 한 spring auth server이다. sso 테스트와 동시에 cu
 - sample-client
   - example client
 - sso-client-app3
-  - basic cleint
+  - basic client
 - resource-server
 - resource-server2
-  - 추가 기능 연계용
+  - basic resource (TODO)
 
 ## Environment
 
 Spring Boot 3, OpenJDK17, Keycloak, H2, JPA
+
+## Features
+
+- Keycloak embedded
+- SSO
+- Custom storage provider(MariaDB)
+- Custom theme
+- Custom login page
+- Custom user registration
+- Custom user profile
+- Custom user profile update
+- Common Error Page (TODO)
+- Log Trace (TODO)
 
 ## Api endpoint
 
@@ -27,39 +40,22 @@ Spring Boot 3, OpenJDK17, Keycloak, H2, JPA
 - [X] 외부 데이터 베이스를 사용하도록 설정
 - [X] 로그인 완료 후 응답값 새로 설정 (로그인 시도 - 로그인화면 - 로그인성공 - 토큰 확인 - 토큰 정보로 userinfo 요청)
 - [X] 회원가입 기능 구현 (local은 불가)
-- [ ] 로그인하고 볼 수 있는 마이페이지 내에서 회원 탈퇴 기능, 회원정보 찾기 기능 구현
 - [X] 로그인 커스텀 테마 설정
 - [X] 마리아디비 연결 및 기능 테스트
 - [X] thymeleaf 기본 설정 및 tailwindcss 설정
-- [ ] 로그인 유지 방법 변경 (토큰 유효기간 늘리기, 자동 재발급 등)
+- [X] 로그인 유지 방법 변경 (토큰 유효기간 늘리기, 자동 재발급 등)
 - [ ] 게시판 CRUD 기능 구현
-- [ ] 신규 Client에서 적용 방법 정리 및 테스트
+- [X] 신규 Client에서 적용 방법 정리 및 테스트
 - [X] Realm 설정 export 방법
 - [ ] [authorization_request_not_found] 가 나올 경우 자동 리다이렉트 하기. keycloak에서 나오는 오류에 대해 리다이렉트 또는 커스텀한 처리가 필요함
 - [ ] Resource Server 하나 더 만들어서 연계하기
 - [ ] 로그 프레임워크로 자세히 나오게 (MDC) -> Client, Resource 두 곳에 설정
 - [ ] 필터, 인터셉터 등 기본 설정 -> Client, Resource 두 곳에 설정
-- [ ] 문서 최종 정리
-- [ ] jboss, nginx 설정
 - [ ] 오류페이지 설정, 오류 처리 (auth server)
+- [ ] 회원정보찾기 기능 추가
+- [ ] 클라이언트에서 회원가입 후 로그인까지 오류 없이 리다이렉트가 잘되야함
 
-## Functions
-
-- SSO 인증
-- 회원관리 화면
-- 회원관리 기능
-- 회원관리자 페이지 접속 화면
-- 회원관리자 권한 확인 화면
-- 로그인 후 회원정보 확인
-- 토큰 검증
-- 접속자 세션 정보 확인
-- CORS 처리
-- API 목록 조회
-- API DOCS 관리자 인증
-- 외부 데이터베이스 저장소 연결
-...MORE...
-
-## FIX ME
+## FIXME
 
 ### auth server 초기설정으로 되돌아가는 현상
 
