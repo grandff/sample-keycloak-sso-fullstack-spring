@@ -1,6 +1,7 @@
 package com.kjm.auth.keycloakauth.auth.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kjm.auth.keycloakauth.auth.model.MemberRegsiterRequestDto;
 import com.kjm.auth.keycloakauth.auth.model.UserDetailVo;
 import com.kjm.auth.keycloakauth.auth.model.UserVo;
+import com.kjm.auth.keycloakauth.auth.model.dto.MemberRequestDto;
 import com.kjm.auth.keycloakauth.auth.service.AuthService;
 import com.kjm.auth.keycloakauth.auth.service.UserService;
 
@@ -86,5 +88,29 @@ public class MemberController {
 
         //로그인 후 어느화면으로 이동할건지 확인필요(24.01.29 임미연)
         return "redirect:http://localhost:8083/auth/";
+    }
+
+
+    //아이디 이메일 확인  
+    @PostMapping("/findpwd/validate")
+    public String validateFindPassword(@Valid MemberRequestDto memberRequestDto, BindingResult result, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
+        log.info("/findpwd/validate come! "+ memberRequestDto.toString() );
+        // 회원가입 유효성 error시 회원가입화면으로 return
+        if (result.hasErrors() || !userSerivce.isUsernameEmailConfirmed(memberRequestDto, result)) {
+            log.info("fail... {}", result.toString());
+            return "pages/member/register";
+        }
+
+        // 정보 가져오기    
+        Optional<UserVo> uservo = userSerivce.getUserInfo(memberRequestDto.getUsername());
+        if (!uservo.isPresent()) {
+            return "pages/member/register";
+        }
+        
+        UserVo user = uservo.get();
+        model.addAttribute("member", user);
+        
+        session.setAttribute("member", uservo);
+        return "pages/member/confirmpwd";
     }
 }

@@ -23,6 +23,12 @@
                 var clientId = url.searchParams.get("client_id");                
                 location.href = "http://localhost:8083/member/register?clientId=" + clientId;
             }
+
+            function findPassword() {
+                var url = new URL(window.location.href);
+                var clientId = url.searchParams.get("client_id");                
+                location.href = "http://localhost:8083/member/findpwd?clientId=" + clientId;
+            }
         </script>
     <#-- form -->
     <#elseif section = "form">        
@@ -60,7 +66,7 @@
                         >
                             비밀번호
                         </label>
-                        <a class="ml-auto inline-block text-sm underline" href="#">
+                        <a class="ml-auto inline-block text-sm underline" href="#" onclick="findPassword();">
                             비밀번호를 잊으셨나요?
                         </a>
                     </div>

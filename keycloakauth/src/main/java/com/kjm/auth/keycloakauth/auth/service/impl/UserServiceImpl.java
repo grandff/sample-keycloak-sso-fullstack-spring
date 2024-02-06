@@ -10,8 +10,10 @@ import com.kjm.auth.keycloakauth.auth.service.UserService;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
+import org.springframework.validation.BindingResult;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserDetailRepository userDetailRepository;
+    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     // 회원정보 조회
     @Override
@@ -72,6 +75,28 @@ public class UserServiceImpl implements UserService {
                 .bio(dto.getBio())
                 .build();
         return userDetailRepository.save(vo);
+    }
+
+    // 아이디 이메일 검사 
+    public boolean isUsernameEmailConfirmed(MemberRequestDto memberRequestDto, BindingResult result) {
+        //값 일치여부 확인 
+        String username = memberRequestDto.getUsername();
+        String email = memberRequestDto.getEmail();
+
+        Optional<UserVo> userDetailOptional =getUserInfo(username);
+        
+        if (userDetailOptional.isPresent()) {
+            UserVo userDetail = userDetailOptional.get();
+            log.info("isUsernameEmailConfirmed : "+ userDetail.toString());
+
+            // username과 email을 확인하여 일치 여부를 판단합니다.
+            boolean usernameMatches = userDetail.getUsername().equals(username);
+            boolean emailMatches = userDetail.getEmail().equals(email);
+
+            return usernameMatches && emailMatches;
+        }
+
+        return false;
     }
 
 }

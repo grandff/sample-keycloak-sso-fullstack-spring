@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kjm.auth.keycloakauth.auth.model.MemberRegsiterRequestDto;
+import com.kjm.auth.keycloakauth.auth.model.dto.MemberRequestDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -55,6 +56,16 @@ public class MemberPageController {
             return "redirect:/member/register";
         }
         return "pages/member/confirm";
+    }
+
+    // 비밀번호 찾기화면 이동
+    @GetMapping("/findpwd")
+    public String findPassword(HttpSession session,HttpServletRequest request, Model model) {
+        String clientId = String.valueOf(request.getParameter("clientId"));
+        log.info("clientId: {}", clientId);
+        model.addAttribute("memberRequestDto", new MemberRequestDto());
+    
+        return "pages/member/findpwd";
     }
 
 }
