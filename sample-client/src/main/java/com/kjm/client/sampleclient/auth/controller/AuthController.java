@@ -88,14 +88,14 @@ public class AuthController {
     @GetMapping("/user/detail")
     public Map<String, Object> userInfoTest(HttpServletRequest request, HttpServletResponse response, Model model)
             throws ServletException, IOException {
-
+        
         Map<String, Object> userInfo = this.webClient.get()
                 .uri(fooApiUrl + "/user/detail")
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
                 })
                 .block();
-        return userInfo;
+                return userInfo;
     }
 
     @GetMapping("/test1")

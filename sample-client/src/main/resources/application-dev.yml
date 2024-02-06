@@ -5,11 +5,12 @@ spring:
         registration:
           custom:
             client-id: ssoClient-1
-            client-secret: KkGxR78OdKBdWgAmeecgfI7UaUgZ6buX
+            client-secret: ssoClientSecret-1
             scope: read,write,openid
             authorization-grant-type: authorization_code
             redirect-uri: http://localhost:8082/ui-one/login/oauth2/code/custom
             #redirect-uri: http://localhost:8082/ui-one/test1
+            #redirect-uri: http://localhost:8082/ui-one
         provider:
           custom:
             authorization-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/auth

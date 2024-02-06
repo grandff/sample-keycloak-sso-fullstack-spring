@@ -14,10 +14,10 @@ spring:
             #redirect-uri: http://localhost:8082/ui-one/test1
         provider:
           custom:
-            authorization-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/auth
-            token-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/token
-            user-info-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/userinfo
-            jwk-set-uri: http://localhost:8083/auth/realms/sample/protocol/openid-connect/certs
+            authorization-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/auth
+            token-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/token
+            user-info-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8083/auth/realms/dev/protocol/openid-connect/certs
             user-name-attribute: preferred_username
   thymeleaf:
     # enable: true
