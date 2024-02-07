@@ -98,19 +98,21 @@ public class MemberController {
         // 회원가입 유효성 error시 회원가입화면으로 return
         if (result.hasErrors() || !userSerivce.isUsernameEmailConfirmed(memberRequestDto, result)) {
             log.info("fail... {}", result.toString());
-            return "pages/member/register";
+            model.addAttribute("errorMessage", "아이디(로그인 전용 아이디) 또는 이메일을 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.");
+            return "pages/member/findpwd";
         }
 
         // 정보 가져오기    
         Optional<UserVo> uservo = userSerivce.getUserInfo(memberRequestDto.getUsername());
         if (!uservo.isPresent()) {
-            return "pages/member/register";
+            model.addAttribute("errorMessage", "관리자에게 다시 확인해주세요.");
+            return "pages/member/findpwd";
         }
         
         UserVo user = uservo.get();
         model.addAttribute("member", user);
-        
         session.setAttribute("member", uservo);
+
         return "pages/member/confirmpwd";
     }
 }
